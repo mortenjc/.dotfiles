@@ -1,0 +1,6 @@
+#!/bin/bash
+
+USER=morten.christensen
+MOUNTP=$1
+
+ssh ${USER}@login.esss.dk "ls /nfs/groups/multigrid";sshfs ${USER}@login.esss.dk:/nfs/groups ${MOUNTP:=nfs}

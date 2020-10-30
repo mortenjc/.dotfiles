@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pcapfile=$1
+shift
+
+echo ./bin/udpgen_pcap -f $pcapfile $* 
+while [[ 1 ]];
+do
+  ./bin/udpgen_pcap -f $pcapfile $* 
+done

@@ -1,0 +1,4 @@
+cd
+umount wsmount 2>/dev/null
+sshfs morten@172.17.5.38:essproj wsmount
+cd -

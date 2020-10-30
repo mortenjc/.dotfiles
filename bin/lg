@@ -1,0 +1,75 @@
+#!/bin/bash
+
+function title {
+  title=$1
+  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $title | base64)
+}
+
+function finish {
+  title Laptop
+  echo -e "\033]6;1;bg;red;brightness;176\a"
+  echo -e "\033]6;1;bg;green;brightness;181\a"
+  echo -e "\033]6;1;bg;blue;brightness;175\a"
+}
+trap finish EXIT
+
+host=$1
+cmd=$2
+
+case $host in
+    ssh0)
+      title ssh0
+      ssh -X morten.christensen@ssh0.esss.dk
+      ;;
+    ssh2)
+      title ssh2
+      ssh -X morten.christensen@ssh2.esss.dk
+      ;;
+    login)
+      title login
+      ssh -X morten.christensen@login.esss.dk
+      ;;
+    cern)
+      title lxplus.cern
+      ssh -Y mochrist@lxplus.cern.ch
+      ;;
+    gssio1)
+      title gssio1
+      ssh -Y root@gssio1.cslab.essss.lu.se
+      ;;
+    gssio2)
+      title gssio2
+      ssh -Y root@gssio2.cslab.essss.lu.se
+      ;;
+    ems1)
+      title ems1
+      ssh -Y root@ems1.cslab.essss.lu.se
+      ;;
+    ws)
+      title Workstation
+      # echo -e "\033]6;1;bg;red;brightness;169\a"
+      # echo -e "\033]6;1;bg;green;brightness;212\a"
+      # echo -e "\033]6;1;bg;blue;brightness;230\a"
+      ssh -Y morten@172.17.5.38 $cmd
+      ;;
+    wsremote)
+      title Workstation
+      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X morten@172.17.5.38 $cmd
+      ;;
+    wdrem)
+      title Walldisplay
+      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X mortenchristensen@172.17.0.242 $cmd
+      ;;
+    wd)
+      title Walldisplay
+      # echo -e "\033]6;1;bg;red;brightness;255\a"
+      # echo -e "\033]6;1;bg;green;brightness;210\a"
+      # echo -e "\033]6;1;bg;blue;brightness;102\a"
+      ssh -Y mortenchristensen@172.17.0.242 $cmd
+      ;;
+     *)
+      printf "unknown host: %s\n" $host
+      printf "possible options: ssh0, ssh2, login, cern, ws, wsrem, wd, wdrem\n"
+      printf "                  ems1, gssio1, gssio2\n"
+      ;;
+esac
