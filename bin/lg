@@ -29,47 +29,29 @@ case $host in
       title login
       ssh -X morten.christensen@login.esss.dk
       ;;
-    cern)
-      title lxplus.cern
-      ssh -Y mochrist@lxplus.cern.ch
-      ;;
-    gssio1)
-      title gssio1
-      ssh -Y root@gssio1.cslab.essss.lu.se
-      ;;
-    gssio2)
-      title gssio2
-      ssh -Y root@gssio2.cslab.essss.lu.se
-      ;;
-    ems1)
-      title ems1
-      ssh -Y root@ems1.cslab.essss.lu.se
-      ;;
     ws)
       title Workstation
-      # echo -e "\033]6;1;bg;red;brightness;169\a"
-      # echo -e "\033]6;1;bg;green;brightness;212\a"
-      # echo -e "\033]6;1;bg;blue;brightness;230\a"
-      ssh -Y morten@172.17.5.38 $cmd
+      ssh -Y mortenchristensen@172.17.5.38 $cmd
       ;;
-    wsremote)
+    wsrem)
       title Workstation
-      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X morten@172.17.5.38 $cmd
+      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X mortenchristensen@172.17.5.38 $cmd
       ;;
     wdrem)
       title Walldisplay
-      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X mortenchristensen@172.17.0.242 $cmd
+      ssh -t -X morten.christensen@ssh2.esss.dk ssh -X mortenchristensen@10.70.6.35$cmd
       ;;
     wd)
       title Walldisplay
-      # echo -e "\033]6;1;bg;red;brightness;255\a"
-      # echo -e "\033]6;1;bg;green;brightness;210\a"
-      # echo -e "\033]6;1;bg;blue;brightness;102\a"
-      ssh -Y mortenchristensen@172.17.0.242 $cmd
+      ssh -Y 10.70.6.35 $cmd
       ;;
+    ssh4)
+      title ssh4proxy
+      ssh -D7777 morten.christensen@ssh4.esss.dk
+      ;;
+
      *)
       printf "unknown host: %s\n" $host
-      printf "possible options: ssh0, ssh2, login, cern, ws, wsrem, wd, wdrem\n"
-      printf "                  ems1, gssio1, gssio2\n"
+      printf "possible options: ssh0, ssh2, ssh4 (proxy), login, ws, wsrem, wd, wdrem\n"
       ;;
 esac

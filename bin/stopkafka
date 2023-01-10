@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-KAFKA=/Users/mortenchristensen/projects/kafka_2.12-2.4.1
-
-cd $KAFKA
-./bin/kafka-server-stop.sh
+cd ~/essproj/my_kafka_tools
+docker-compose down
+colima stop

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-branch=$1
-
-docker run -i -t --rm buildcentos event-formation-unit $branch all unit_tests

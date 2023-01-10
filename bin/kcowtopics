@@ -1,5 +1,0 @@
-#!/bin/bash
-
-broker=${1:-localhost:9092}
-
-/Users/mortenchristensen/essproj/kafkacow/build/bin/kafkacow -b $broker -L -a

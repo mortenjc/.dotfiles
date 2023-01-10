@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-KAFKA=/Users/mortenchristensen/projects/kafka_2.12-2.4.1
-
-cd $KAFKA
-./bin/zookeeper-server-start.sh config/zookeeper.properties
